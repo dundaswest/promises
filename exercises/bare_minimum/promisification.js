@@ -57,8 +57,38 @@ var readFileAndMakeItFunny = function(filePath, callback) {
   });
 };
 
-var readFileAndMakeItFunnyAsync = Promise.promisify(readFileAndMakeItFunny); // TODO
+var readFileAndMakeItFunnyAsync = function(filePath, callback) {
+  let myPromise = new Promise(function(resolve, reject) {
+    fs.readFile(filePath, 'utf8', function(err, file) {
+      if (err) { return reject(err); } 
+      var funnyFile = file.split('\n')
+        .map(function(line) {
+          return line + ' lol';
+        })
+        .join('\n');
+      resolve(funnyFile);
+    });
+  });
+  return myPromise;
+};
 
+
+// TODO
+/*var getStatusCodeAsync = function(url) {
+  let myPromise = new Promise(function(resolve, reject) {
+    
+    request.get(url, (err, response, body) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(response.statusCode);
+      }    
+    });
+
+  });
+
+  return myPromise;
+};*/
 // Export these functions so we can test them and reuse them in later exercises
 module.exports = {
   getGitHubProfileAsync: getGitHubProfileAsync,
