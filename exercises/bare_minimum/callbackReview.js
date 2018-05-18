@@ -8,9 +8,9 @@ var request = require('request');
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFile = function (filePath, callback) {
   // TODO
-  fs.readFile(filePath, 'utf8',(err, data) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      callback(err)
+      callback(err);
     } else {
       //console.log('getting first line?--',data.split('\n')[0]);
     
@@ -28,7 +28,7 @@ var getStatusCode = function (url, callback) {
       console.log('this is the code -->', response.statusCode); 
       callback(null, response.statusCode);
     }    
-  })
+  });
 };
 
 // Export these functions so we can test them and reuse them in later exercises

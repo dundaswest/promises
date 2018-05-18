@@ -15,14 +15,14 @@ var pluckFirstLineFromFileAsync = function(filePath) {
   //console.log('----', cbReview.pluckFirstLineFromFile(filePath,() => console.log(data)));
 
   let aPromise = new Promise(function(resolve, reject) {
-    fs.readFile(filePath, 'utf8',(err, data) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
-        reject(err)
+        reject(err);
       } else { 
         resolve(data.split('\n')[0]);
       }
     });
-  })  
+  });  
   return aPromise;
 };
 
@@ -36,7 +36,7 @@ var getStatusCodeAsync = function(url) {
       } else {
         resolve(response.statusCode);
       }    
-    })
+    });
 
   });
 
